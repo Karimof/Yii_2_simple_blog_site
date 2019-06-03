@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BEGIN 3</title>
+    <style>
+        #circle {
+            width: 100px;
+            height: 100px;
+            background: green;
+            border: 1px solid red;
+            border-radius: 50%;
+            position: absolute;
+            top: 300px;
+            left: 300px;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body onkeyup="move(event)">
+<div id="circle"></div>
+
+<script>
+    var circle = document.getElementById('circle');
+    var topCount = 300;
+    var counter = 100;
+    setInterval(function(){
+        circle.style.top = topCount+'px';
+        circle.style.left = Math.sin(topCount + Math.PI*topCount)+'px';
+        topCount++;
+    }, counter);
+    // var xCoord = 0;
+    // var yCoord = 0;
+    // var step = 50;
+    // function move(e)
+    // {
+    //     // console.log(e);
+    //     //Up press
+    //     if(e.keyCode == 38)
+    //     {
+    //         yCoord -= step;
+    //         circle.style.top = yCoord+'px';
+    //     }
+    //     //Down press
+    //     if(e.keyCode == 40)
+    //     {
+    //         yCoord += step;
+    //         circle.style.top = yCoord+'px';
+    //     }
+    //     //Right press
+    //     if(e.keyCode == 39)
+    //     {
+    //         xCoord += step;
+    //         circle.style.left = xCoord+'px';
+    //     }
+    //     //Left press
+    //     if(e.keyCode == 37)
+    //     {
+    //         xCoord -= step;
+    //         circle.style.left = xCoord+'px';
+    //     }
+    // }
+</script>
+</body>
+</html>
