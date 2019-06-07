@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>BEGIN 3</title>
     <style>
+        .main-header {
+            background: url(banner.jpg) no-repeat;
+            background-size: 1366px;
+            min-height: 610px;
+        }
         #circle {
             width: 100px;
             height: 100px;
@@ -11,55 +16,85 @@
             border: 1px solid red;
             border-radius: 50%;
             position: absolute;
-            top: 300px;
-            left: 300px;
+            top: 0;
+            left: 0;
+            transition: 0.5s;
+
+        }
+
+        #circleAction {
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: 1px solid black;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
             transition: 0.5s;
         }
     </style>
 </head>
 <body onkeyup="move(event)">
+<div  class="main-header">
 <div id="circle"></div>
+<div id="circleAction"></div>
 
 <script>
     var circle = document.getElementById('circle');
-    var topCount = 300;
-    var counter = 100;
-    setInterval(function(){
-        circle.style.top = topCount+'px';
-        circle.style.left = Math.sin(topCount + Math.PI*topCount)+'px';
-        topCount++;
-    }, counter);
-    // var xCoord = 0;
-    // var yCoord = 0;
-    // var step = 50;
-    // function move(e)
-    // {
-    //     // console.log(e);
-    //     //Up press
-    //     if(e.keyCode == 38)
-    //     {
-    //         yCoord -= step;
-    //         circle.style.top = yCoord+'px';
-    //     }
-    //     //Down press
-    //     if(e.keyCode == 40)
-    //     {
-    //         yCoord += step;
-    //         circle.style.top = yCoord+'px';
-    //     }
-    //     //Right press
-    //     if(e.keyCode == 39)
-    //     {
-    //         xCoord += step;
-    //         circle.style.left = xCoord+'px';
-    //     }
-    //     //Left press
-    //     if(e.keyCode == 37)
-    //     {
-    //         xCoord -= step;
-    //         circle.style.left = xCoord+'px';
-    //     }
-    // }
+    var topCount = 0;
+    var counter = 0;
+    var ochko = 0;
+    var radian=Math.PI*2/100;
+    var x = 10;
+    var y = 0;
+    var i = 0;
+    setInterval(function () {
+        counter += radian;
+        y = Math.sin(counter) / 2 + 0.5;
+        i+=0.01;
+        circle.style.top=(y*500)+'px';
+        circle.style.left=(x*100)+'px';
+    },100);
+
+    var circleAction = document.getElementById('circleAction');
+    var xCoord = 0;
+    var yCoord = 0;
+    var step = 50;
+    function move(e)
+    {
+        //Up press
+        if(e.keyCode == 38)
+        {
+            yCoord -= step;
+            circleAction.style.top = yCoord+'px';
+        }
+        //Down press
+        if(e.keyCode == 40)
+        {
+            yCoord += step;
+            circleAction.style.top = yCoord+'px';
+        }
+        //Right press
+        if(e.keyCode == 39)
+        {
+            xCoord += step;
+            circleAction.style.left = xCoord+'px';
+        }
+        //Left press
+        if(e.keyCode == 37)
+        {
+            xCoord -= step;
+            circleAction.style.left = xCoord+'px';
+        }
+        if ((circleAction.style.left >= circle.style.left && circleAction.style.left <= circle.style.left + 102)
+        ){
+            ochko ++;
+            console.log(ochko);
+        }
+    }
+    console.log(circleAction.style.left);
 </script>
+</div>
 </body>
 </html>
